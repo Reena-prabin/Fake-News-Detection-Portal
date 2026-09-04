@@ -46,10 +46,11 @@ def predict_news(news):
         confidence_level = "LOW"
 
     return result, round(confidence, 2), confidence_level
-news = input("Enter the news: ")
+if __name__ == "__main__":
+    news = input("Enter the news: ")
 
-result, confidence, confidence_level = predict_news(news)
+    result, confidence, confidence_level = predict_news(news)
 
-print("Result:", result)
-print("Confidence:", confidence, "%")
-print("Confidence Level:", confidence_level)
+    print("Result:", result)
+    print("Confidence:", confidence, "%")
+    print("Confidence Level:", confidence_level)
