@@ -23,29 +23,33 @@ def preprocess_text(text):
     )
 
     return text
+def predict_news(news):
+    cleaned_news = preprocess_text(news)
 
+    news_vector = vectorizer.transform([cleaned_news])
+
+    prediction = model.predict(news_vector)
+    probability = model.predict_proba(news_vector)
+
+    confidence = max(probability[0]) * 100
+
+    if prediction[0] == 0:
+        result = "FAKE NEWS"
+    else:
+        result = "REAL NEWS"
+
+    if confidence >= 70:
+        confidence_level = "HIGH"
+    elif confidence >= 50:
+        confidence_level = "MEDIUM"
+    else:
+        confidence_level = "LOW"
+
+    return result, round(confidence, 2), confidence_level
 news = input("Enter the news: ")
 
-cleaned_news = preprocess_text(news)
-
-news_vector = vectorizer.transform([cleaned_news])
-
-prediction = model.predict(news_vector)
-probability = model.predict_proba(news_vector)
-
-confidence = max(probability[0]) * 100
-
-if prediction[0] == 0:
-    result = "FAKE NEWS"
-else:
-    result = "REAL NEWS"
+result, confidence, confidence_level = predict_news(news)
 
 print("Result:", result)
-print("Confidence:", round(confidence, 2), "%")
-
-if confidence >= 70:
-    print("Confidence Level: HIGH")
-elif confidence >= 50:
-    print("Confidence Level: MEDIUM")
-else:
-    print("Confidence Level: LOW")
+print("Confidence:", confidence, "%")
+print("Confidence Level:", confidence_level)
