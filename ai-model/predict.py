@@ -36,8 +36,16 @@ probability = model.predict_proba(news_vector)
 confidence = max(probability[0]) * 100
 
 if prediction[0] == 0:
-    print("Result: FAKE NEWS")
+    result = "FAKE NEWS"
 else:
-    print("Result: REAL NEWS")
+    result = "REAL NEWS"
 
+print("Result:", result)
 print("Confidence:", round(confidence, 2), "%")
+
+if confidence >= 70:
+    print("Confidence Level: HIGH")
+elif confidence >= 50:
+    print("Confidence Level: MEDIUM")
+else:
+    print("Confidence Level: LOW")
