@@ -31,8 +31,13 @@ cleaned_news = preprocess_text(news)
 news_vector = vectorizer.transform([cleaned_news])
 
 prediction = model.predict(news_vector)
+probability = model.predict_proba(news_vector)
+
+confidence = max(probability[0]) * 100
 
 if prediction[0] == 0:
     print("Result: FAKE NEWS")
 else:
     print("Result: REAL NEWS")
+
+print("Confidence:", round(confidence, 2), "%")
