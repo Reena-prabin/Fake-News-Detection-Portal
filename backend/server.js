@@ -3,6 +3,7 @@ const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const Prediction = require("./models/Prediction");
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected successfully");
@@ -29,11 +30,20 @@ app.post("/predict", async (req, res) => {
             }
         );
 
+        const prediction = new Prediction({
+            news: req.body.news,
+            result: response.data.result,
+            confidence: response.data.confidence,
+            confidence_level: response.data.confidence_level
+        });
+
+        await prediction.save();
+
         res.json(response.data);
 
     } catch (error) {
         res.status(500).json({
-            error: "Unable to connect to AI service"
+            error: "Unable to process prediction"
         });
     }
 });
