@@ -47,6 +47,19 @@ app.post("/predict", async (req, res) => {
         });
     }
 });
+app.get("/history", async (req, res) => {
+    try {
+        const history = await Prediction.find()
+            .sort({ createdAt: -1 });
+
+        res.json(history);
+
+    } catch (error) {
+        res.status(500).json({
+            error: "Unable to fetch history"
+        });
+    }
+});
 
 const PORT = 5000;
 
