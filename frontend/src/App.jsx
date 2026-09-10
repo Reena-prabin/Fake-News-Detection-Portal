@@ -1,11 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
     const [news, setNews] = useState("");
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [history, setHistory] = useState([]);
 
+    // Get previous prediction history
+    const getHistory = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/history");
+            const data = await response.json();
+
+            setHistory(data);
+        } catch (error) {
+            console.log("Unable to fetch history");
+        }
+    };
+
+    // Load history when the page opens
+    useEffect(() => {
+        getHistory();
+    }, []);
+
+    // Check whether news is fake or real
     const checkNews = async () => {
         if (!news.trim()) {
             alert("Please enter a news article");
@@ -27,7 +46,11 @@ function App() {
             });
 
             const data = await response.json();
+
             setResult(data);
+
+            // Refresh history after a new prediction
+            getHistory();
 
         } catch (error) {
             alert("Unable to connect to backend");
@@ -46,6 +69,7 @@ function App() {
 
             <main className="container">
 
+                {/* News Input Section */}
                 <div className="card">
 
                     <h2>Check a News Article</h2>
@@ -67,16 +91,19 @@ function App() {
 
                 </div>
 
+                {/* Current Result */}
                 {result && (
                     <div className="result-card">
 
                         <h2>Analysis Result</h2>
 
-                        <div className={
-                            result.result === "FAKE NEWS"
-                                ? "result fake"
-                                : "result real"
-                        }>
+                        <div
+                            className={
+                                result.result === "FAKE NEWS"
+                                    ? "result fake"
+                                    : "result real"
+                            }
+                        >
                             {result.result}
                         </div>
 
@@ -97,10 +124,46 @@ function App() {
                     </div>
                 )}
 
+                {/* Prediction History */}
+                {history.length > 0 && (
+                    <div className="history-card">
+
+                        <h2>Prediction History</h2>
+
+                        {history.map((item) => (
+                            <div
+                                className="history-item"
+                                key={item._id}
+                            >
+
+                                <p>{item.news}</p>
+
+                                <div className="history-details">
+
+                                    <span>{item.result}</span>
+
+                                    <span>
+                                        {item.confidence}%
+                                    </span>
+
+                                    <span>
+                                        {item.confidence_level}
+                                    </span>
+
+                                </div>
+
+                            </div>
+                        ))}
+
+                    </div>
+                )}
+
             </main>
 
             <footer>
-                <p>Fake News Detection Portal • AI & MERN Stack</p>
+                <p>
+                    Fake News Detection Portal • AI & MERN Stack
+                </p>
             </footer>
 
         </div>
