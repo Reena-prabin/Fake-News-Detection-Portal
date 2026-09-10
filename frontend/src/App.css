@@ -3,15 +3,24 @@
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f7fb;
     color: #1f2937;
 }
 
+
+/* ===============================
+   Main App
+   =============================== */
+
 .app {
     min-height: 100vh;
 }
+
+
+/* ===============================
+   Header
+   =============================== */
 
 .header {
     background: #172554;
@@ -30,14 +39,25 @@ body {
     font-size: 17px;
 }
 
+
+/* ===============================
+   Main Container
+   =============================== */
+
 .container {
     width: 90%;
     max-width: 850px;
     margin: 40px auto;
 }
 
+
+/* ===============================
+   Cards
+   =============================== */
+
 .card,
-.result-card {
+.result-card,
+.history-card {
     background: white;
     padding: 30px;
     border-radius: 14px;
@@ -46,24 +66,44 @@ body {
 }
 
 .card h2,
-.result-card h2 {
+.result-card h2,
+.history-card h2 {
     margin-top: 0;
+    color: #172554;
 }
+
+
+/* ===============================
+   Description
+   =============================== */
 
 .description {
     color: #6b7280;
     line-height: 1.6;
 }
 
+
+/* ===============================
+   Text Area
+   =============================== */
+
 textarea {
     width: 100%;
     min-height: 220px;
+
     padding: 15px;
+
     margin-top: 15px;
+
     border: 1px solid #d1d5db;
+
     border-radius: 8px;
+
     font-size: 16px;
+
     resize: vertical;
+
+    font-family: Arial, sans-serif;
 }
 
 textarea:focus {
@@ -71,16 +111,30 @@ textarea:focus {
     border-color: #2563eb;
 }
 
+
+/* ===============================
+   Main Button
+   =============================== */
+
 button {
     width: 100%;
+
     margin-top: 18px;
+
     padding: 14px;
+
     border: none;
+
     border-radius: 8px;
+
     background: #2563eb;
+
     color: white;
+
     font-size: 17px;
+
     font-weight: bold;
+
     cursor: pointer;
 }
 
@@ -93,34 +147,59 @@ button:disabled {
     cursor: not-allowed;
 }
 
+
+/* ===============================
+   Result
+   =============================== */
+
 .result {
     text-align: center;
+
     padding: 20px;
+
     margin: 20px 0;
+
     border-radius: 10px;
+
     font-size: 25px;
+
     font-weight: bold;
 }
+
+
+/* Fake Result */
 
 .fake {
     background: #fee2e2;
     color: #b91c1c;
 }
 
+
+/* Real Result */
+
 .real {
     background: #dcfce7;
     color: #15803d;
 }
 
+
+/* ===============================
+   Result Details
+   =============================== */
+
 .details {
     display: flex;
+
     justify-content: space-around;
+
     text-align: center;
 }
 
 .details div {
     display: flex;
+
     flex-direction: column;
+
     gap: 8px;
 }
 
@@ -132,8 +211,146 @@ button:disabled {
     font-size: 20px;
 }
 
+
+/* ===============================
+   History Header
+   =============================== */
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+/* ===============================
+   Clear History Button
+   =============================== */
+
+.clear-btn {
+    width: auto;
+
+    padding: 10px 18px;
+
+    margin-top: 0;
+
+    background: #dc2626;
+
+    font-size: 14px;
+}
+
+.clear-btn:hover {
+    background: #b91c1c;
+}
+
+
+/* ===============================
+   History Item
+   =============================== */
+
+.history-item {
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    margin-top: 15px;
+
+    background: #f9fafb;
+}
+
+.history-item p {
+    margin-top: 0;
+
+    line-height: 1.5;
+
+    color: #374151;
+}
+
+
+/* ===============================
+   History Details
+   =============================== */
+
+.history-details {
+    display: flex;
+
+    gap: 25px;
+
+    font-weight: bold;
+}
+
+
+/* Fake History */
+
+.history-fake {
+    color: #b91c1c;
+}
+
+
+/* Real History */
+
+.history-real {
+    color: #15803d;
+}
+
+
+/* Other History Details */
+
+.history-details span {
+    color: #374151;
+}
+
+
+/* ===============================
+   Footer
+   =============================== */
+
 footer {
     text-align: center;
+
     color: #6b7280;
+
     padding: 30px;
+}
+
+
+/* ===============================
+   Mobile
+   =============================== */
+
+@media (max-width: 600px) {
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 94%;
+    }
+
+    .details,
+    .history-details {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .history-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .clear-btn {
+        width: 100%;
+    }
+
 }
