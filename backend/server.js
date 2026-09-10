@@ -1,9 +1,21 @@
 require("dotenv").config();
+
 const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Prediction = require("./models/Prediction");
+const User = require("./models/User");
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+
+// ===============================
+// MongoDB Connection
+// ===============================
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected successfully");
@@ -11,18 +23,26 @@ mongoose.connect(process.env.MONGO_URI)
     .catch((error) => {
         console.log("MongoDB connection failed:", error.message);
     });
-const app = express();
 
-app.use(cors());
-app.use(express.json());
+
+// ===============================
+// Home Route
+// ===============================
 
 app.get("/", (req, res) => {
     res.json({
         message: "Fake News Detection Backend is running"
     });
 });
+
+
+// ===============================
+// Predict News
+// ===============================
+
 app.post("/predict", async (req, res) => {
     try {
+
         const response = await axios.post(
             "http://127.0.0.1:8000/predict",
             {
@@ -42,24 +62,63 @@ app.post("/predict", async (req, res) => {
         res.json(response.data);
 
     } catch (error) {
+
         res.status(500).json({
             error: "Unable to process prediction"
         });
+
     }
 });
+
+
+// ===============================
+// Get Prediction History
+// ===============================
+
 app.get("/history", async (req, res) => {
     try {
+
         const history = await Prediction.find()
             .sort({ createdAt: -1 });
 
         res.json(history);
 
     } catch (error) {
+
         res.status(500).json({
             error: "Unable to fetch history"
         });
+
     }
 });
+
+
+// ===============================
+// Clear Prediction History
+// ===============================
+
+app.delete("/history", async (req, res) => {
+    try {
+
+        await Prediction.deleteMany({});
+
+        res.json({
+            message: "History cleared successfully"
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            error: "Unable to clear history"
+        });
+
+    }
+});
+
+
+// ===============================
+// Start Server
+// ===============================
 
 const PORT = 5000;
 
