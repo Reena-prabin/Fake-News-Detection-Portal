@@ -3,306 +3,440 @@ import { Link, useNavigate } from "react-router-dom";
 
 function MailIcon() {
     return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Z" />
-            <path d="m4 7 8 6 8-6" />
+        <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
         </svg>
     );
 }
 
 function LockIcon() {
     return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="4" y="10" width="16" height="11" rx="2" />
-            <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <rect x="5" y="10" width="14" height="10" rx="2" />
+            <path d="M8 10V7a4 4 0 018 0v3" />
         </svg>
     );
 }
 
-function EyeIcon({ hidden }) {
-    return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            {hidden ? (
-                <>
-                    <path d="M3 3l18 18" />
-                    <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
-                    <path d="M9.9 4.2A10.8 10.8 0 0 1 12 4c5 0 8.5 4 9.5 6a11.5 11.5 0 0 1-3.1 3.5" />
-                    <path d="M6.6 6.6C4.5 8 3.2 10 2.5 11.5 3.5 13.5 7 18 12 18c1.1 0 2.1-.2 3-.5" />
-                </>
-            ) : (
-                <>
-                    <path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" />
-                    <circle cx="12" cy="12" r="2.5" />
-                </>
-            )}
+function EyeIcon({ open }) {
+    return open ? (
+        <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+            <circle cx="12" cy="12" r="3" />
+        </svg>
+    ) : (
+        <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+        >
+            <path d="M3 3l18 18" />
+            <path d="M10.6 5.2A9.8 9.8 0 0112 5c6.5 0 10 7 10 7a18 18 0 01-3.1 4.2" />
+            <path d="M6.6 6.6C3.6 8.5 2 12 2 12s3.5 7 10 7c1.8 0 3.3-.5 4.7-1.2" />
+            <path d="M9.9 9.9a3 3 0 004.2 4.2" />
         </svg>
     );
 }
 
 function ShieldIcon() {
     return (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3 20 6v5c0 5-3.4 8.7-8 10-4.6-1.3-8-5-8-10V6l8-3Z" />
-            <path d="m8.5 12 2.2 2.2 4.8-5" />
+        <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+        >
+            <path d="M12 3l7 3v5c0 4.8-3 8.5-7 10-4-1.5-7-5.2-7-10V6l7-3z" />
+            <path d="M9 12l2 2 4-4" />
         </svg>
     );
 }
 
 function Login() {
 
-    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
-    const handleLogin = (e) => {
+    const [loading, setLoading] = useState(false);
+
+
+    const handleLogin = async (e) => {
+
         e.preventDefault();
 
-        if (!email.trim() || !password.trim()) {
+
+        if (!email || !password) {
+
             alert("Please enter your email and password.");
+
             return;
         }
 
-        // Temporary navigation
-        // Real authentication will be connected next.
-        navigate("/dashboard");
+
+        setLoading(true);
+
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/auth/login",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                alert(
+                    data.error ||
+                    "Invalid email or password"
+                );
+
+                setLoading(false);
+
+                return;
+            }
+
+
+            // ===============================
+            // Store JWT Token
+            // ===============================
+
+            localStorage.setItem(
+                "token",
+                data.token
+            );
+
+
+            // ===============================
+            // Store User Information
+            // ===============================
+
+            localStorage.setItem(
+                "user",
+                JSON.stringify(data.user)
+            );
+
+
+            // ===============================
+            // Login Successful
+            // ===============================
+
+            alert("Login successful!");
+
+
+            navigate("/dashboard");
+
+
+        } catch (error) {
+
+            console.log(
+                "Login error:",
+                error
+            );
+
+            alert(
+                "Unable to connect to backend."
+            );
+
+        }
+
+
+        setLoading(false);
     };
 
-    return (
-        <div className="login-page">
 
-            <div className="login-background">
-                <div className="login-glow glow-one"></div>
-                <div className="login-glow glow-two"></div>
-            </div>
+    return (
+
+        <div className="login-page">
 
             <div className="login-wrapper">
 
-                {/* LEFT SECTION */}
 
-                <section className="login-intro">
+                {/* LEFT SIDE */}
+
+                <div className="login-intro">
 
                     <div className="portal-brand">
 
-                        <div className="portal-mark">
+                        <div className="brand-icon">
                             <ShieldIcon />
                         </div>
 
                         <div>
-                            <span>FAKE NEWS</span>
-                            <strong>DETECTION PORTAL</strong>
+
+                            <h2>
+                                Fake News Portal
+                            </h2>
+
+                            <p>
+                                AI-powered news verification
+                            </p>
+
                         </div>
 
                     </div>
 
-                    <div className="intro-content">
 
-                        <p className="eyebrow">
-                            INTELLIGENT NEWS ANALYSIS
-                        </p>
+                    <div className="login-intro-content">
+
+                        <span className="intro-label">
+                            WELCOME BACK
+                        </span>
 
                         <h1>
-                            Identify misinformation
-                            <span>with confidence.</span>
+                            Stay informed.
+                            <br />
+                            <span>
+                                Know what to trust.
+                            </span>
                         </h1>
 
-                        <p className="intro-text">
-                            Analyze news articles using machine learning
-                            and get an instant prediction with a confidence
-                            score.
+                        <p>
+                            Sign in to analyze news articles,
+                            review your prediction history,
+                            and make more informed decisions
+                            with AI-powered detection.
                         </p>
 
-                        <div className="intro-line"></div>
+                    </div>
 
-                        <div className="intro-stats">
 
-                            <div>
-                                <strong>AI</strong>
-                                <span>Powered Analysis</span>
-                            </div>
+                    <div className="login-stats">
 
-                            <div>
-                                <strong>ML</strong>
-                                <span>Text Classification</span>
-                            </div>
+                        <div>
 
-                            <div>
-                                <strong>24/7</strong>
-                                <span>Accessible</span>
-                            </div>
+                            <strong>
+                                98%
+                            </strong>
+
+                            <span>
+                                Model Accuracy
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                24/7
+                            </strong>
+
+                            <span>
+                                AI Analysis
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                Secure
+                            </strong>
+
+                            <span>
+                                Authentication
+                            </span>
 
                         </div>
 
                     </div>
 
-                    <p className="intro-footer">
-                        AI-powered credibility analysis platform
-                    </p>
-
-                </section>
+                </div>
 
 
-                {/* RIGHT SECTION */}
+                {/* RIGHT SIDE */}
 
-                <section className="login-panel">
+                <div className="login-panel">
 
-                    <div className="login-panel-inner">
+                    <div className="login-panel-header">
 
-                        <div className="login-heading">
+                        <h1>
+                            Sign in
+                        </h1>
 
-                            <div className="login-shield">
-                                <ShieldIcon />
-                            </div>
+                        <p>
+                            Enter your account details to continue.
+                        </p>
 
-                            <div>
-                                <h2>Welcome back</h2>
-                                <p>
-                                    Sign in to access your dashboard
-                                </p>
-                            </div>
-
-                        </div>
+                    </div>
 
 
-                        <form onSubmit={handleLogin}>
-
-                            <div className="login-field">
-
-                                <label htmlFor="email">
-                                    Email address
-                                </label>
-
-                                <div className="login-input">
-
-                                    <MailIcon />
-
-                                    <input
-                                        id="email"
-                                        type="email"
-                                        placeholder="you@example.com"
-                                        value={email}
-                                        onChange={(e) =>
-                                            setEmail(e.target.value)
-                                        }
-                                    />
-
-                                </div>
-
-                            </div>
+                    <form onSubmit={handleLogin}>
 
 
-                            <div className="login-field">
+                        {/* EMAIL */}
 
-                                <div className="password-label">
+                        <div className="login-field">
 
-                                    <label htmlFor="password">
-                                        Password
-                                    </label>
-
-                                    <a href="#">
-                                        Forgot password?
-                                    </a>
-
-                                </div>
-
-                                <div className="login-input">
-
-                                    <LockIcon />
-
-                                    <input
-                                        id="password"
-                                        type={
-                                            showPassword
-                                                ? "text"
-                                                : "password"
-                                        }
-                                        placeholder="Enter your password"
-                                        value={password}
-                                        onChange={(e) =>
-                                            setPassword(e.target.value)
-                                        }
-                                    />
-
-                                    <button
-                                        type="button"
-                                        className="eye-button"
-                                        onClick={() =>
-                                            setShowPassword(!showPassword)
-                                        }
-                                        aria-label={
-                                            showPassword
-                                                ? "Hide password"
-                                                : "Show password"
-                                        }
-                                    >
-                                        <EyeIcon
-                                            hidden={showPassword}
-                                        />
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-
-                            <label className="remember-row">
-
-                                <input type="checkbox" />
-
-                                <span>
-                                    Remember me
-                                </span>
-
+                            <label htmlFor="email">
+                                Email address
                             </label>
 
+                            <div className="login-input-wrapper">
 
-                            <button
-                                type="submit"
-                                className="login-submit"
-                            >
-                                <span>Sign in</span>
+                                <MailIcon />
 
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M5 12h14" />
-                                    <path d="m13 6 6 6-6 6" />
-                                </svg>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="Enter your email"
+                                    value={email}
+                                    onChange={(e) =>
+                                        setEmail(e.target.value)
+                                    }
+                                />
 
-                            </button>
+                            </div>
 
-                        </form>
-
-
-                        <div className="login-divider">
-                            <span>New to the portal?</span>
                         </div>
 
 
-                        <Link
-                            to="/register"
-                            className="create-account"
+                        {/* PASSWORD */}
+
+                        <div className="login-field">
+
+                            <label htmlFor="password">
+                                Password
+                            </label>
+
+                            <div className="login-input-wrapper">
+
+                                <LockIcon />
+
+                                <input
+                                    id="password"
+                                    type={
+                                        showPassword
+                                            ? "text"
+                                            : "password"
+                                    }
+                                    placeholder="Enter your password"
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
+                                />
+
+                                <button
+                                    type="button"
+                                    className="password-toggle"
+                                    onClick={() =>
+                                        setShowPassword(
+                                            !showPassword
+                                        )
+                                    }
+                                >
+
+                                    <EyeIcon
+                                        open={showPassword}
+                                    />
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        {/* LOGIN BUTTON */}
+
+                        <button
+                            type="submit"
+                            className="login-submit"
+                            disabled={loading}
                         >
-                            Create an account
-                        </Link>
+
+                            {loading
+                                ? "Signing in..."
+                                : "Sign in"
+                            }
+
+                        </button>
 
 
-                        <p className="security-note">
-                            <ShieldIcon />
-                            Your account information is securely protected.
-                        </p>
+                    </form>
+
+
+                    {/* CREATE ACCOUNT */}
+
+                    <div className="login-divider">
+
+                        <span>
+                            New to the portal?
+                        </span>
 
                     </div>
 
-                </section>
+
+                    <Link
+                        to="/register"
+                        className="create-account"
+                    >
+                        Create a new account
+                    </Link>
+
+
+                    {/* SECURITY MESSAGE */}
+
+                    <p className="login-security">
+
+                        <ShieldIcon />
+
+                        Your credentials are securely
+                        processed by the application.
+
+                    </p>
+
+                </div>
 
             </div>
-
-            <p className="login-copyright">
-                © 2026 Fake News Detection Portal
-            </p>
 
         </div>
     );

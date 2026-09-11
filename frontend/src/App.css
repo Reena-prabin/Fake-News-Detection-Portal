@@ -830,123 +830,59 @@
     }
 
 }
-/* =========================================================
-   PROFESSIONAL LOGIN PAGE
-========================================================= */
+/* =========================================
+   LOGIN PAGE
+========================================= */
 
 .login-page {
     min-height: 100vh;
-    position: relative;
-    overflow: hidden;
+    width: 100%;
+    background: #081333;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 45px 30px 70px;
-    background: #0b1533;
+    padding: 40px;
+    box-sizing: border-box;
 }
-
-
-/* Background */
-
-.login-background {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.login-background::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(
-            circle at 12% 20%,
-            rgba(37, 99, 235, 0.28),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(59, 130, 246, 0.22),
-            transparent 32%
-        );
-}
-
-.login-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-}
-
-.glow-one {
-    width: 320px;
-    height: 320px;
-    background: rgba(37, 99, 235, 0.18);
-    top: -140px;
-    left: -100px;
-}
-
-.glow-two {
-    width: 400px;
-    height: 400px;
-    background: rgba(30, 64, 175, 0.2);
-    bottom: -220px;
-    right: -120px;
-}
-
-
-/* Main Layout */
 
 .login-wrapper {
     width: 100%;
-    max-width: 1120px;
-    min-height: 650px;
+    max-width: 1080px;
+    min-height: 620px;
     display: grid;
     grid-template-columns: 1.05fr 0.95fr;
-    position: relative;
-    z-index: 2;
+    background: #ffffff;
+    border-radius: 20px;
     overflow: hidden;
-    border-radius: 22px;
-    background: white;
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.35),
-        0 5px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
 }
 
 
-/* =========================================================
-   LEFT INTRODUCTION
-========================================================= */
+/* =========================================
+   LEFT SIDE
+========================================= */
 
 .login-intro {
     position: relative;
+    padding: 68px 54px;
+    color: white;
+    background:
+        radial-gradient(
+            circle at 85% 85%,
+            rgba(74, 120, 255, 0.28),
+            transparent 28%
+        ),
+        linear-gradient(
+            145deg,
+            #14285f 0%,
+            #17377f 50%,
+            #244ab4 100%
+        );
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 52px 55px;
-    color: white;
-    background:
-        linear-gradient(
-            145deg,
-            #101d46 0%,
-            #172b62 55%,
-            #1e40af 100%
-        );
+    box-sizing: border-box;
 }
-
-.login-intro::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    right: -130px;
-    bottom: -110px;
-}
-
-
-/* Brand */
 
 .portal-brand {
     display: flex;
@@ -954,366 +890,264 @@
     gap: 14px;
 }
 
-.portal-mark {
-    width: 45px;
-    height: 45px;
+.brand-icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 10px;
     background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
 }
 
-.portal-mark svg {
-    width: 25px;
-    height: 25px;
-    fill: none;
-    stroke: #93c5fd;
-    stroke-width: 1.6;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.brand-icon svg {
+    width: 28px;
+    height: 28px;
 }
 
-.portal-brand span,
-.portal-brand strong {
-    display: block;
+.portal-brand h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
 }
 
-.portal-brand span {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: #93c5fd;
-    margin-bottom: 3px;
-}
-
-.portal-brand strong {
+.portal-brand p {
+    margin: 5px 0 0;
     font-size: 13px;
-    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.72);
 }
 
-
-/* Intro Content */
-
-.intro-content {
-    max-width: 510px;
+.login-intro-content {
+    max-width: 500px;
+    margin-top: 30px;
 }
 
-.eyebrow {
-    margin: 0 0 17px;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #93c5fd;
+.intro-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #b9ccff;
 }
 
-.intro-content h1 {
+.login-intro-content h1 {
     margin: 0;
     font-size: 43px;
-    line-height: 1.13;
-    letter-spacing: -1px;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    font-weight: 700;
     color: white;
 }
 
-.intro-content h1 span {
-    display: block;
-    color: #bfdbfe;
+.login-intro-content h1 span {
+    color: #9db8ff;
 }
 
-.intro-text {
-    max-width: 450px;
+.login-intro-content p {
     margin: 24px 0 0;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+    max-width: 480px;
+    font-size: 15px;
     line-height: 1.7;
-    color: #cbd5e1;
+    color: rgba(255, 255, 255, 0.78);
 }
 
-.intro-line {
-    width: 55px;
-    height: 3px;
-    margin: 30px 0;
-    border-radius: 5px;
-    background: #60a5fa;
-}
-
-
-/* Stats */
-
-.intro-stats {
+.login-stats {
     display: flex;
-    gap: 40px;
+    gap: 42px;
+    margin-top: 45px;
 }
 
-.intro-stats div {
+.login-stats > div {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
-.intro-stats strong {
+.login-stats strong {
     font-size: 19px;
+    font-weight: 700;
     color: white;
 }
 
-.intro-stats span {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    color: #94a3b8;
-}
-
-.intro-footer {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    color: #94a3b8;
+.login-stats span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 
-/* =========================================================
-   RIGHT LOGIN PANEL
-========================================================= */
+/* =========================================
+   RIGHT SIDE
+========================================= */
 
 .login-panel {
-    display: flex;
-    align-items: center;
     background: #ffffff;
-}
-
-.login-panel-inner {
-    width: 100%;
-    max-width: 410px;
-    margin: auto;
-    padding: 50px 45px;
-}
-
-
-/* Heading */
-
-.login-heading {
+    padding: 70px 72px;
     display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 35px;
-}
-
-.login-shield {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    border-radius: 12px;
-    background: #eff6ff;
+    box-sizing: border-box;
+    min-width: 0;
 }
 
-.login-shield svg {
-    width: 25px;
-    height: 25px;
-    fill: none;
-    stroke: #2563eb;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.login-panel-header {
+    margin-bottom: 32px;
 }
 
-.login-heading h2 {
-    margin: 0 0 5px;
-    color: #111827;
-    font-family: Arial, sans-serif;
-    font-size: 27px;
-    letter-spacing: -0.5px;
-}
-
-.login-heading p {
+.login-panel-header h1 {
     margin: 0;
-    color: #6b7280;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #101828;
+    letter-spacing: -0.8px;
+}
+
+.login-panel-header p {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #667085;
 }
 
 
-/* Fields */
+/* =========================================
+   FORM
+========================================= */
 
 .login-field {
-    margin-bottom: 22px;
+    width: 100%;
+    margin-bottom: 21px;
 }
 
 .login-field label {
     display: block;
     margin-bottom: 8px;
-    color: #374151;
-    font-family: Arial, sans-serif;
     font-size: 13px;
     font-weight: 600;
+    color: #344054;
 }
 
-.login-input {
+.login-input-wrapper {
+    width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 0 13px;
-    border: 1px solid #d1d5db;
+    gap: 11px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    border: 1px solid #d0d5dd;
     border-radius: 9px;
-    background: white;
+    background: #ffffff;
+    color: #667085;
     transition: all 0.2s ease;
 }
 
-.login-input:focus-within {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.login-input-wrapper:focus-within {
+    border-color: #2864e8;
+    box-shadow: 0 0 0 3px rgba(40, 100, 232, 0.12);
 }
 
-.login-input > svg {
-    width: 18px;
-    height: 18px;
+.login-input-wrapper svg {
     flex-shrink: 0;
-    fill: none;
-    stroke: #9ca3af;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    color: #667085;
 }
 
-.login-input input {
+.login-input-wrapper input {
     width: 100%;
     height: 100%;
-    padding: 0;
+    min-width: 0;
     border: none;
     outline: none;
     background: transparent;
-    color: #111827;
-    font-family: Arial, sans-serif;
+    font-family: inherit;
     font-size: 14px;
+    color: #101828;
+    padding: 0;
 }
 
-.login-input input::placeholder {
-    color: #9ca3af;
+.login-input-wrapper input::placeholder {
+    color: #98a2b3;
 }
 
 
-/* Password */
+/* =========================================
+   PASSWORD TOGGLE
+========================================= */
 
-.password-label {
+.password-toggle {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #667085;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.password-label a {
-    color: #2563eb;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    text-decoration: none;
-}
-
-.password-label a:hover {
-    text-decoration: underline;
-}
-
-.eye-button {
-    width: auto !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 4px !important;
-    display: flex !important;
     align-items: center;
     justify-content: center;
-    border: none !important;
-    background: transparent !important;
-    color: #9ca3af !important;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.eye-button:hover {
-    background: transparent !important;
-    box-shadow: none !important;
-    transform: none !important;
-}
-
-.eye-button svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.password-toggle:hover {
+    color: #2864e8;
 }
 
 
-/* Remember */
-
-.remember-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 0 0 22px;
-    color: #6b7280;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-}
-
-.remember-row input {
-    width: 15px;
-    height: 15px;
-    margin: 0;
-    accent-color: #2563eb;
-}
-
-
-/* Submit */
+/* =========================================
+   LOGIN BUTTON
+========================================= */
 
 .login-submit {
     width: 100%;
-    height: 51px;
-    margin: 0;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    height: 50px;
+    margin-top: 8px;
     border: none;
     border-radius: 9px;
-    background: #2563eb;
+    background: linear-gradient(
+        135deg,
+        #2864e8,
+        #1d4ed8
+    );
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 .login-submit:hover {
-    background: #1d4ed8;
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
-.login-submit svg {
-    width: 17px;
-    height: 17px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.login-submit:active {
+    transform: translateY(0);
+}
+
+.login-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 
-/* Divider */
+/* =========================================
+   CREATE ACCOUNT
+========================================= */
 
 .login-divider {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 27px 0 18px;
-    color: #9ca3af;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
+    gap: 14px;
+    margin: 28px 0 18px;
 }
 
 .login-divider::before,
@@ -1321,69 +1155,130 @@
     content: "";
     height: 1px;
     flex: 1;
-    background: #e5e7eb;
+    background: #eaecf0;
 }
 
-
-/* Create Account */
+.login-divider span {
+    font-size: 12px;
+    color: #98a2b3;
+    white-space: nowrap;
+}
 
 .create-account {
-    height: 48px;
+    width: 100%;
+    height: 46px;
+    box-sizing: border-box;
+    border: 1px solid #d0d5dd;
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d1d5db;
-    border-radius: 9px;
-    color: #1f2937;
-    background: white;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
     text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #344054;
+    background: white;
     transition: all 0.2s ease;
 }
 
 .create-account:hover {
-    border-color: #2563eb;
-    color: #2563eb;
-    background: #f8fbff;
+    border-color: #2864e8;
+    color: #2864e8;
+    background: #f8faff;
 }
 
 
-/* Security */
+/* =========================================
+   SECURITY MESSAGE
+========================================= */
 
-.security-note {
+.login-security {
+    margin: 24px 0 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    gap: 6px;
-    margin: 25px 0 0;
-    color: #9ca3af;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    color: #98a2b3;
 }
 
-.security-note svg {
-    width: 14px;
-    height: 14px;
-    fill: none;
-    stroke: #9ca3af;
-    stroke-width: 1.7;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.login-security svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 
-/* Copyright */
+/* =========================================
+   RESPONSIVE
+========================================= */
 
-.login-copyright {
-    position: absolute;
-    bottom: 16px;
-    z-index: 3;
-    margin: 0;
-    color: #64748b;
-    font-family: Arial, sans-serif;
-    font-size: 10px;
+@media (max-width: 900px) {
+
+    .login-page {
+        padding: 25px;
+    }
+
+    .login-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+    }
+
+    .login-intro {
+        min-height: 400px;
+        padding: 45px 40px;
+    }
+
+    .login-intro-content h1 {
+        font-size: 35px;
+    }
+
+    .login-panel {
+        padding: 50px 40px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 15px;
+    }
+
+    .login-wrapper {
+        border-radius: 14px;
+    }
+
+    .login-intro {
+        padding: 35px 25px;
+        min-height: 350px;
+    }
+
+    .login-intro-content h1 {
+        font-size: 30px;
+    }
+
+    .login-stats {
+        gap: 20px;
+    }
+
+    .login-stats strong {
+        font-size: 16px;
+    }
+
+    .login-stats span {
+        font-size: 10px;
+    }
+
+    .login-panel {
+        padding: 40px 25px;
+    }
+
+    .login-panel-header h1 {
+        font-size: 30px;
+    }
 }
 
 
@@ -1426,4 +1321,128 @@
         font-size: 24px;
     }
 
+}
+.register-wrapper {
+    max-width: 1120px;
+}
+
+.register-wrapper .login-panel-inner {
+    max-width: 430px;
+}
+
+.register-wrapper .login-field {
+    margin-bottom: 15px;
+}
+
+.register-wrapper .login-divider {
+    margin-top: 20px;
+}
+
+.register-wrapper .eye-button {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #2563eb !important;
+}
+/* =========================================
+   FINAL DASHBOARD SVG SIZE FIX
+========================================= */
+
+/* Sidebar logo */
+
+.sidebar .sidebar-logo-icon {
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.sidebar .sidebar-logo-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+
+/* Sidebar navigation icons */
+
+.sidebar nav a svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+.sidebar .logout svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    flex-shrink: 0 !important;
+}
+
+
+/* Top-right user icon */
+
+.dashboard-header .user-info svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+}
+
+
+/* Statistics icons */
+
+.stats .stat-icon {
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.stats .stat-icon svg {
+    width: 25px !important;
+    height: 25px !important;
+    min-width: 25px !important;
+    max-width: 25px !important;
+}
+
+
+/* Quick Action icon container */
+
+.quick-actions .action-icon {
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.quick-actions .action-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+}
+
+
+/* Quick Action arrow */
+
+.quick-actions .action-arrow {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.quick-actions .action-arrow svg {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
 }
