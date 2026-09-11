@@ -1446,3 +1446,296 @@
     min-width: 18px !important;
     max-width: 18px !important;
 }
+/* =========================================
+   Check News Page
+========================================= */
+
+.news-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(20, 40, 80, 0.07);
+    margin-bottom: 28px;
+}
+
+.news-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.news-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eef4ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.news-card-icon svg {
+    width: 23px;
+    height: 23px;
+}
+
+.news-card-header h2 {
+    margin: 0 0 5px;
+    font-size: 22px;
+}
+
+.news-card-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.news-input {
+    width: 100%;
+    min-height: 280px;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid #dbe2ea;
+    border-radius: 12px;
+    padding: 18px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #1f2937;
+    outline: none;
+    background: #fafbfc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.news-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: #ffffff;
+}
+
+.news-input::placeholder {
+    color: #9ca3af;
+}
+
+.news-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+}
+
+.news-card-footer > span {
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.analyze-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 13px 22px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.analyze-btn:hover {
+    background: #1d4ed8;
+}
+
+.analyze-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.analyze-btn svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* =========================================
+   Analysis Result
+========================================= */
+
+.analysis-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(20, 40, 80, 0.07);
+}
+
+.analysis-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.result-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #6b7280;
+}
+
+.analysis-header h2 {
+    margin: 5px 0 0;
+    font-size: 22px;
+}
+
+.result-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.result-icon.real {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.result-icon.fake {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.result {
+    padding: 18px 20px;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.result.real {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.result.fake {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.analysis-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.analysis-details > div {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.analysis-details span {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.analysis-details strong {
+    font-size: 21px;
+    color: #111827;
+}
+
+.analysis-disclaimer {
+    margin-top: 20px;
+    padding: 15px 17px;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #64748b;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.analysis-disclaimer svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.analysis-disclaimer p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   Check News Sidebar Icon Sizes
+========================================= */
+
+.sidebar .sidebar-logo-icon svg {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+.sidebar nav a svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0;
+}
+
+.sidebar .logout svg {
+    width: 18px !important;
+    height: 18px !important;
+    flex-shrink: 0;
+}
+
+.dashboard-header .user-info svg {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+
+/* =========================================
+   Responsive
+========================================= */
+
+@media (max-width: 700px) {
+
+    .news-card,
+    .analysis-card {
+        padding: 22px;
+    }
+
+    .analysis-details {
+        grid-template-columns: 1fr;
+    }
+
+    .news-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .analyze-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
